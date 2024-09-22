@@ -28,4 +28,16 @@ public class UnityTool
         }
         return default(T);
     }
+
+    public Transform GetTransformFromChildren(GameObject parent, string name)
+    {
+        foreach(Transform t in parent.GetComponentsInChildren<Transform>())
+        {
+            if (t.name == name)
+            {
+                return t;
+            }
+        }
+        return null;
+    }
 }

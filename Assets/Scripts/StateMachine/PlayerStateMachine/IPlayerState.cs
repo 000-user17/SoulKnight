@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class IPlayerState : IState
 {
-    public PlayerStateMachine m_Machine { get => base.m_Machine as PlayerStateMachine; set => base.m_Machine = value;}
+    public new PlayerStateMachine m_Machine { get => base.m_Machine as PlayerStateMachine; set => base.m_Machine = value;}
     protected IPlayer player;
     protected GameObject gameObject; // 最终是在unity的各类角色上
     protected Rigidbody2D m_rb;

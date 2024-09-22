@@ -6,6 +6,7 @@ public class IPlayer : ICharacter
 {
     protected Animator m_Animator;
     protected PlayerStateMachine m_StateMachine;
+    protected IPlayerWeapon weapon;
     public IPlayer(GameObject obj) : base(obj) {}
     protected override void OnInit()
     {
@@ -18,5 +19,9 @@ public class IPlayer : ICharacter
     {
         base.OnCharacterUpdate();
         m_StateMachine.GameUpdate();
+    }
+    public void AddWeapon(PlayerWeaponType type)
+    {
+        weapon = WeaponFactory.Instance.GetPlayerWeapon(type, this);
     }
 }

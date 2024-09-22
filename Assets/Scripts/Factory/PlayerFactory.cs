@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 public enum PlayerType
 {
@@ -35,6 +36,13 @@ public class PlayerFactory
                 player = new Knight(obj);
                 break;
         }
+
+        if (!UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox"))
+        {
+            UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox").AddComponent<Symbol>();
+        }
+        UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox").SetCharacter(player);
+
         return player;
     }
 }
