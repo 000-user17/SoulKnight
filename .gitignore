@@ -56,3 +56,12 @@ crashlytics-build.properties
 .DS_Store*
 Thumbs.db
 Desktop.ini
+Assets/Scripts/StateMachine.meta
+Assets/Scripts/StateMachine/IState.cs.meta
+Assets/Scripts/StateMachine/IStateMachine.cs.meta
+Assets/Scripts/StateMachine/PlayerStateMachine.meta
+Assets/Scripts/StateMachine/PlayerStateMachine/IPlayerState.cs.meta
+Assets/Scripts/StateMachine/PlayerStateMachine/Knight.meta
+Assets/Scripts/StateMachine/PlayerStateMachine/PlayerStateMachine.cs.meta
+Assets/Scripts/StateMachine/PlayerStateMachine/Knight/KnightIdleState.cs.meta
+Assets/Scripts/StateMachine/PlayerStateMachine/Knight/KnightWalkState.cs.meta

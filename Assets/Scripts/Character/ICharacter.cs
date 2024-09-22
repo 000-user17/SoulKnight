@@ -13,13 +13,13 @@ public class ICharacter
     private bool isStart;
     private bool isShouldRemove;
     private bool isAlreadyRemove;
-    private bool isLeft
+    public bool isLeft
     {
         get => m_isLeft;
         set{
             if (value)
             {
-                transform.rotation = Quaternion.Euler(0, 0, 180);
+                transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             else{
                 transform.rotation = Quaternion.identity;

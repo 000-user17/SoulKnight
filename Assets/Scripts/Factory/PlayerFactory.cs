@@ -33,7 +33,6 @@ public class PlayerFactory
         {
             case PlayerType.Knight:
                 player = new Knight(obj);
-                Debug.Log(player);
                 break;
         }
         return player;
