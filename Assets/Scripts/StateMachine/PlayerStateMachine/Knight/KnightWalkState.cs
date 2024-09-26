@@ -32,6 +32,7 @@ public class KnightWalkState : IPlayerState
         即有一个加速度的启动，更真实 */
         hor = Input.GetAxisRaw("Horizontal");
         ver = Input.GetAxisRaw("Vertical");
+
         moveDir.Set(hor, ver);
         if (moveDir.magnitude > 0)
         {
@@ -50,6 +51,13 @@ public class KnightWalkState : IPlayerState
         {
             player.isLeft = true;
         }
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        m_rb.velocity = Vector2.zero; // 将物体速度设置为0
+        m_Animator.SetBool("isIdle", true);
     }
     
 }

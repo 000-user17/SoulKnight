@@ -30,10 +30,15 @@ public class CollectWeapon : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collison)
     {
+
         if (collison.CompareTag("Player"))
         {
-            isPlayerEnter = true;
             player = collison.GetComponent<Symbol>().m_Character as IPlayer;
+            if (transform.IsChildOf(player.transform))
+            {
+                return;
+            }
+            isPlayerEnter = true;
         }
     }
 

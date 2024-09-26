@@ -7,6 +7,7 @@ using UnityEngine;
 public enum PlayerWeaponType
 {
     BadPistol,
+    Ak47,
 }
 
 public class WeaponFactory
@@ -30,6 +31,7 @@ public class WeaponFactory
     {
         // 获取角色上的武器原点，将实例化的武器作为这个原点的子物体 （gunoriginpoint）
         Transform origin = UnityTool.Instance.GetTransformFromChildren(character.gameObject, "GunOriginPoint");
+        // origin是obj的父物体
         GameObject obj = UnityEngine.Object.Instantiate(ResourcesFactory.Instance.GetWeapon(type.ToString()), origin);
         obj.name = type.ToString();
         obj.transform.localPosition = Vector3.zero;
@@ -38,6 +40,10 @@ public class WeaponFactory
             case PlayerWeaponType.BadPistol:
                 weapon = new BadPistol(obj, character);
                 break;
+            case PlayerWeaponType.Ak47:
+                weapon = new Ak47(obj, character);
+                break;
+
         }
         return weapon;
     }

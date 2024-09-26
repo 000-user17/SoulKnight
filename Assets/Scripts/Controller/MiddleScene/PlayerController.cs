@@ -10,6 +10,7 @@ public class PlayerController : AbstractController
     {
         base.OnInit();
         MainPlayer = PlayerFactory.Instance.GetPlayer(PlayerType.Knight);
+        MainPlayer.SetPlayerControlInput(GameMediator.Instance.GetController<InputController>().input);
     }
     protected override void AlwaysUpdate()
     {

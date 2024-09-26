@@ -7,6 +7,7 @@ public class IWeapon
     public GameObject gameObject { get; protected set;}
     public Transform transform => gameObject.transform;
     protected ICharacter m_Character;
+    protected bool isCanRotate; // 武器是否能被旋转
     private bool isInit;
     private bool isEnter;
 
@@ -15,6 +16,7 @@ public class IWeapon
         // 赋值之后再执行init()
         gameObject = obj;
         m_Character = character;
+        isCanRotate = true;
     }
 
     protected virtual void OnInit()

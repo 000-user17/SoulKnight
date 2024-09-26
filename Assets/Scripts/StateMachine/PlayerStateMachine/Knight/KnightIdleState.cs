@@ -22,8 +22,8 @@ public class KnightIdleState : IPlayerState
     {
         // 这里不需要调用GameUpdate的原因是在父类IState中定定义了，并执行onUpload，直接继承该方法执行本方法
         base.OnUpdate();
-        hor = Input.GetAxis("Horizontal");
-        ver = Input.GetAxis("Vertical");
+        hor = Input.GetAxisRaw("Horizontal"); // 必须与walk状态对应，都为raw或都不是
+        ver = Input.GetAxisRaw("Vertical");
         moveDir.Set(hor, ver);
         if (moveDir.magnitude > 0) // 检查移动方向向量是否大于0，比如同时按下左右键
         {
