@@ -17,9 +17,9 @@ public class UnityTool
         }
     }
 
-    public T GetComponentFromChildren<T>(GameObject obj, string name)
+    public T GetComponentFromChildren<T>(GameObject obj, string name, bool isActive = false)
     {
-        foreach (Transform t in obj.GetComponentsInChildren<Transform>())
+        foreach (Transform t in obj.GetComponentsInChildren<Transform>(!isActive))
         {
             if (t.name == name)
             {
@@ -29,9 +29,10 @@ public class UnityTool
         return default(T);
     }
 
-    public Transform GetTransformFromChildren(GameObject parent, string name)
+    public Transform GetTransformFromChildren(GameObject parent, string name, bool isActive = false)
     {
-        foreach(Transform t in parent.GetComponentsInChildren<Transform>())
+        foreach(Transform t in parent.GetComponentsInChildren<Transform>(!isActive))
+        // 只获取激活的子对象
         {
             if (t.name == name)
             {

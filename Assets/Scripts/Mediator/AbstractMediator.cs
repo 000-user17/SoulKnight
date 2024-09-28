@@ -8,15 +8,22 @@ public abstract class AbstractMediator
 {
 
     public List<AbstractController> controllers;
+    public List<AbstractSystem> systems;
 
     public AbstractMediator()
     {
         controllers = new List<AbstractController>();
+        systems = new List<AbstractSystem>();
     }
 
     public void RegisterController(AbstractController controller)
     {
         controllers.Add(controller);
+    }
+
+    public void RegisterSystem(AbstractSystem system)
+    {
+        systems.Add(system);
     }
 
     public T GetController<T>() where T : AbstractController
@@ -26,6 +33,18 @@ public abstract class AbstractMediator
             if (controller is T)
             {
                 return controller as T;
+            }
+        }
+        return default(T);
+    }
+
+    public T GetSystem<T>() where T : AbstractSystem
+    {
+        foreach(AbstractSystem system in systems)
+        {
+            if (system is T)
+            {
+                return system as T;
             }
         }
         return default(T);

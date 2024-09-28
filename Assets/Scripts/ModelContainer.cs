@@ -23,6 +23,7 @@ public class ModelContainer
     private ModelContainer()
     {
         modelDic = new Dictionary<Type, AbstractModel>();
+        modelDic.Add(typeof(SceneModel), new SceneModel());
     }
     public T GetModel<T>() where T : AbstractModel
     {

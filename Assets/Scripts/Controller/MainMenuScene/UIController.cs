@@ -2,24 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MainMenuScene
+public class UIController : AbstractController
 {
-    public class UIController : AbstractController
+    private IPanel rootPanel;
+    public UIController() {}
+
+    protected override void OnInit()
     {
-        private PanelRoot rootPanel;
-        public UIController() {}
-
-        protected override void OnInit()
+        base.OnInit();
+        switch(SceneCommand.Instance.GetActiveSceneName())
         {
-            base.OnInit();
-            rootPanel = new PanelRoot();
+            case SceneName.MainMenuScene:
+                rootPanel = new MainMenuScene.PanelRoot();
+                break;
+            case SceneName.MiddleScene:
+                rootPanel = new MiddleScene.PanelRoot();
+                break;
         }
-
-        protected override void AlwaysUpdate()
-        {
-            base.AlwaysUpdate();
-            rootPanel.GameUpdate();
-        }
+        
     }
 
+    protected override void AlwaysUpdate()
+    {
+        base.AlwaysUpdate();
+        rootPanel.GameUpdate();
+    }
 }
