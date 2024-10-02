@@ -21,6 +21,7 @@ public class ResourcesFactory
     }
     private string WeaponPath = "Prefabs/Weapon/";
     private string PlayerSkinPath = "Animation/Character/Players/";
+    private string DataPath = "Datas/";
     private Dictionary<string, GameObject> objDic;
     private ResourcesFactory()
     {
@@ -42,6 +43,18 @@ public class ResourcesFactory
     public RuntimeAnimatorController GetPlayerSkin(string name)
     {
         return Resources.LoadAll<RuntimeAnimatorController>(PlayerSkinPath + name).Where(x => x.name == name).ToArray()[0];
+    }
+
+    /* 加载角色数据的方法 */
+    public T GetScripttableObject<T>() where T : ScriptableObject
+    {
+        Type type = typeof(T);
+        string path = DataPath;
+        if (type == typeof(PlayerScriptableObject))
+        {
+            path += "PlayerData";
+        }
+        return Resources.Load<T>(path);
     }
 
 }

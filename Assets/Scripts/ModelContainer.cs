@@ -23,7 +23,8 @@ public class ModelContainer
     private ModelContainer()
     {
         modelDic = new Dictionary<Type, AbstractModel>();
-        modelDic.Add(typeof(SceneModel), new SceneModel());
+        AddModel(new SceneModel());
+        AddModel(new PlayerModel());
     }
     public T GetModel<T>() where T : AbstractModel
     {
@@ -32,5 +33,10 @@ public class ModelContainer
             return modelDic[typeof(T)] as T;
         }
         return default(T);
+    }
+
+    private void AddModel<T> (T obj) where T : AbstractModel
+    {
+        modelDic.Add(typeof(T), obj as T);
     }
 }
