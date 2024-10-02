@@ -22,6 +22,10 @@ namespace MiddleScene
             GameMediator.Instance.RegisterController(m_PlayerController); // 注册控制器到中介者
             GameMediator.Instance.RegisterSystem(m_CameraSystem);
             GameMediator.Instance.RegisterController(m_UIController);
+            EventCenter.Instance.RegisterObserver(EventType.OnSelectPlayerFinish, () =>
+            {
+                m_PlayerController.TurnOnController();
+            });
         }
         protected override void OnUpdate()
         {

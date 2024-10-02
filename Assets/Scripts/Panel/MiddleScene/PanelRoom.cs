@@ -30,10 +30,19 @@ namespace MiddleScene
                 {
                     system.ChangeCamera(CameraType.SelectCamera);
                     system.SetSelectTarget(collider.transform.parent);
+                    GetPanel<PanelSelectPlayer>().SetCollider(collider.transform.parent.gameObject);
                     EnterPanel<PanelSelectPlayer>();
                     gameObject.SetActive(false);
                 }
             }
         }
+
+        protected override void OnEnter()
+        {
+            base.OnEnter();
+            system.ChangeCamera(CameraType.StaticCamera);
+
+        }
     }
+
 }

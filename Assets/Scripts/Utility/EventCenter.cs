@@ -1,12 +1,14 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine.Events;
 
 public enum EventType{
-
+    OnSceneChangeComplete,
+    OnSelectPlayerFinish,
 }
 
 /* 观察者模式事件中心 */
-public class EventCenter
+public class EventCenter : Singleton<EventCenter>
 {
     public class IEventInfo
     {
@@ -29,6 +31,24 @@ public class EventCenter
         // c#可以父类的引用指向子类的实例,但是反过来不行，所以这里要用UnityAction<T>不然其子类无法复制给UnityAction的引用
         public UnityAction<T> action;
         public EventInfo(UnityAction<T> action)
+        {
+            this.action = action;
+        }
+    }
+
+    public class PermanentEventInfo : IEventInfo
+    {
+        public UnityAction action;
+        public PermanentEventInfo(UnityAction action)
+        {
+            this.action = action;
+        }
+    }
+
+    public class PermanentEventInfo<T> : IEventInfo
+    {
+        public UnityAction<T> action;
+        public PermanentEventInfo(UnityAction<T> action)
         {
             this.action = action;
         }
@@ -76,6 +96,38 @@ public class EventCenter
             }
         }
     }
+    public void RegisterPermanentObserver(EventType type, UnityAction action)
+    {
+        if (!EventDic.ContainsKey(type))
+        {
+            EventDic.Add(type, new List<IEventInfo> {new PermanentEventInfo(action)});
+        }
+        else{
+            foreach (IEventInfo info in EventDic[type])
+            {
+                if (info is PermanentEventInfo)
+                {
+                    (info as PermanentEventInfo).action += action;
+                }
+            }
+        }
+    }
+    public void RegisterPermanentObserver<T>(EventType type, UnityAction<T> action)
+    {
+        if (!EventDic.ContainsKey(type))
+        {
+            EventDic.Add(type, new List<IEventInfo> {new PermanentEventInfo<T>(action)});
+        }
+        else{
+            foreach (IEventInfo info in EventDic[type])
+            {
+                if (info is PermanentEventInfo<T>)
+                {
+                    (info as PermanentEventInfo<T>).action += action;
+                }
+            }
+        }
+    }
 
     public void NotifyObserver(EventType type)
     {
@@ -86,6 +138,10 @@ public class EventCenter
                 if (info is EventInfo)
                 {
                     (info as EventInfo).action.Invoke();
+                }
+                else if (info is PermanentEventInfo)
+                {
+                    (info as PermanentEventInfo).action.Invoke();
                 }
             }
         }
@@ -102,12 +158,32 @@ public class EventCenter
                     // action是RegisterObserver注册进去的，UnityAction<T> action 说明action委托有一个T类型的参数
                     (info as EventInfo<T>).action.Invoke(param);
                 }
+                else if (info is PermanentEventInfo<T>)
+                {
+                    (info as PermanentEventInfo<T>).action.Invoke(param);
+                }
             }
         }
     }
 
     public void ClearObserver()
     {
-        EventDic.Clear();
+        foreach(EventType type in Enum.GetValues(typeof(EventType)))
+        {
+            if (!EventDic.ContainsKey(type))
+            {
+                continue;
+            }
+            for (int i = 0; i < EventDic[type].Count; ++i)
+            {
+                if (EventDic[type][i] is not PermanentEventInfo &&
+                    UnityTool.Instance.isGenericType(EventDic[type][i].GetType(), typeof(PermanentEventInfo<>)))
+                    {
+                        EventDic[type].RemoveAt(i);
+                    }
+            }
+        }
     }
+
+    // 判断第一个参数类型是否能转化为第二个参数的类型
 }

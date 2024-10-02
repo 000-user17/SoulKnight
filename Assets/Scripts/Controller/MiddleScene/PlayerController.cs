@@ -9,13 +9,20 @@ public class PlayerController : AbstractController
     protected override void OnInit()
     {
         base.OnInit();
-        // MainPlayer = PlayerFactory.Instance.GetPlayer(PlayerType.Knight);
-        // MainPlayer.SetPlayerControlInput(GameMediator.Instance.GetController<InputController>().input);
+
     }
-    protected override void AlwaysUpdate()
+
+    protected override void OnAfterRunUpdate()
     {
-        base.AlwaysUpdate();
-        // MainPlayer.GameUpdate();
+        base.OnAfterRunUpdate();
+        MainPlayer.GameUpdate();
+    }
+
+    public void SetMainPlayer(PlayerType type)
+    {
+        MainPlayer = PlayerFactory.Instance.GetPlayer(type);
+        MainPlayer.SetPlayerControlInput(GameMediator.Instance.GetController<InputController>().input);
+
     }
 
 }

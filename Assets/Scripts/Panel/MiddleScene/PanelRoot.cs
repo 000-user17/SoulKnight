@@ -13,6 +13,10 @@ namespace MiddleScene
         {
             base.OnInit();
             Resume();
+            EventCenter.Instance.RegisterObserver(EventType.OnSelectPlayerFinish, () =>
+            {
+                gameObject.SetActive(false);
+            });
         }
         protected override void OnEnter()
         {

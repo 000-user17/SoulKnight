@@ -105,6 +105,7 @@ public abstract class IPanel
     public void Resume()
     {
         isSuspend = false;
+        gameObject.SetActive(true);
     }
 
 }

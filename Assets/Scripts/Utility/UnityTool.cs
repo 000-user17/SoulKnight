@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.Events;
 using UnityEngine;
 
@@ -40,5 +42,25 @@ public class UnityTool
             }
         }
         return null;
+    }
+
+    /* 判断类型是否与泛型类型一致 */
+    public bool isGenericType(Type type, Type generic)
+    {
+        if (type == null || generic == null) return false;
+        if (type.GetInterfaces().Any(isGeneric)) return false;
+        while (type != null && type != typeof(object))
+        {
+            if (isGeneric(type)) return true;
+            type = type.BaseType;
+        }
+        return false;
+
+        bool isGeneric(Type type)
+        {
+            if (!type.IsGenericType) return false;
+            if (type.GetGenericTypeDefinition() == generic) return true;
+            return false;
+        }
     }
 }

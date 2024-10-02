@@ -50,6 +50,8 @@ public class SceneCommand : Singleton<SceneCommand>
     private void OnSceneChangeComplete(AsyncOperation op)
     {
         model.SetDate();
+        EventCenter.Instance.NotifyObserver(EventType.OnSceneChangeComplete);
+        EventCenter.Instance.ClearObserver();
     }
 
 }

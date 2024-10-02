@@ -14,7 +14,7 @@ namespace MainMenuScene
             UnityTool.Instance.GetComponentFromChildren<Button>(gameObject,
                 "ButtonStart").onClick.AddListener(() =>
                 {
-                    Debug.Log("游戏开始");
+                    SceneCommand.Instance.LoadScene(SceneName.MiddleScene);
                 });
         }
         protected override void OnEnter()
