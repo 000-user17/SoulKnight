@@ -5,7 +5,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 public enum PlayerType
 {
-    Knight
+    Knight,
+    Rogue,
 }
 
 public class PlayerFactory
@@ -34,6 +35,9 @@ public class PlayerFactory
         {
             case PlayerType.Knight:
                 player = new Knight(obj);
+                break;
+            case PlayerType.Rogue:
+                player = new Rogue(obj);
                 break;
         }
 

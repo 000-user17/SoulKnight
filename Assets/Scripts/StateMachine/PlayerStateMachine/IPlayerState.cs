@@ -25,9 +25,8 @@ public abstract class IPlayerState : IState
         m_Animator = UnityTool.Instance.GetComponentFromChildren<Animator>(gameObject, "Sprite");
     }
 
-    protected override void OnEnter()
+    public override void OnEnter()
     {
         base.OnEnter();
-        Debug.Log(this);
     }
 }

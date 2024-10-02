@@ -20,6 +20,7 @@ public abstract class IStateMachine
         }
         currentState?.OnExit();
         currentState = stateDic[typeof(T)];
+        currentState?.OnEnter();
     }
 
     public void stopCurrentState()

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnightIdleState : IPlayerState
+public class RogueIdleState : IPlayerState
 {
     private float hor, ver;
     private Vector2 moveDir;
-    public KnightIdleState(PlayerStateMachine machine) : base(machine)
+    public RogueIdleState(PlayerStateMachine machine) : base(machine)
     {
 
     }
@@ -14,8 +14,10 @@ public class KnightIdleState : IPlayerState
     public override void OnEnter()
     {
         base.OnEnter();
+        if (m_Animator == null) {
+            return;
+        }
         m_Animator.SetBool("isIdle", true); // 之前在unity动画的状态机界面设置的
-        m_rb.velocity = Vector2.zero; // 将物体速度设置为0
     }
 
     protected override void OnUpdate()
@@ -25,9 +27,11 @@ public class KnightIdleState : IPlayerState
         hor = Input.GetAxisRaw("Horizontal"); // 必须与walk状态对应，都为raw或都不是
         ver = Input.GetAxisRaw("Vertical");
         moveDir.Set(hor, ver);
+        player.recentDir = moveDir;
+
         if (moveDir.magnitude > 0) // 检查移动方向向量是否大于0，比如同时按下左右键
         {
-            m_Machine.SetState<KnightWalkState>();
+            m_Machine.SetState<RogueWalkState>();
             return;
         }
     }

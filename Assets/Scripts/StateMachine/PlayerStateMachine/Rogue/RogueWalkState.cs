@@ -2,13 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnightWalkState : IPlayerState
+public class RogueWalkState : IPlayerState
 {
     private float hor, ver;
     private Vector2 moveDir;
-    public KnightWalkState(PlayerStateMachine machine) : base(machine)
+    public RogueWalkState(PlayerStateMachine machine) : base(machine)
     {
 
+    }
+
+    public override void OnEnter()
+    {
+        base.OnEnter();
+        if (m_Animator == null) {
+            return;
+        }
+        m_Animator.SetBool("isWalk", true);
     }
 
     protected override void OnUpdate()
@@ -32,8 +41,15 @@ public class KnightWalkState : IPlayerState
         即有一个加速度的启动，更真实 */
         hor = Input.GetAxisRaw("Horizontal");
         ver = Input.GetAxisRaw("Vertical");
-
         moveDir.Set(hor, ver);
+        player.recentDir = moveDir;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            m_Machine.SetState<RogueRollState>();
+            return;
+        }
+
         if (moveDir.magnitude > 0)
         {
             m_rb.transform.position += (Vector3) moveDir * 8 * Time.deltaTime;
@@ -56,8 +72,7 @@ public class KnightWalkState : IPlayerState
     public override void OnExit()
     {
         base.OnExit();
-        m_rb.velocity = Vector2.zero; // 将物体速度设置为0
-        m_Animator.SetBool("isIdle", true);
+        m_Animator.SetBool("isWalk", false);
     }
     
 }

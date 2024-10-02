@@ -10,6 +10,7 @@ public class ICharacter
 
     private bool m_isLeft;
     private bool isInit;
+    public Vector2 recentDir; // 上一时刻的方向
     private bool isStart;
     private bool isShouldRemove;
     private bool isAlreadyRemove;

@@ -24,7 +24,7 @@ public abstract class IState
     }
 
     protected virtual void OnInit() {}
-    protected virtual void OnEnter() {}
+    public virtual void OnEnter() {}
 
     protected virtual void OnUpdate()
     {
