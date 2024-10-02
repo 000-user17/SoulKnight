@@ -20,6 +20,7 @@ public class ResourcesFactory
         }
     }
     private string WeaponPath = "Prefabs/Weapon/";
+    private string PlayerSkinPath = "Animation/Character/Players/";
     private Dictionary<string, GameObject> objDic;
     private ResourcesFactory()
     {
@@ -36,6 +37,11 @@ public class ResourcesFactory
         GameObject obj = Resources.LoadAll<GameObject>(WeaponPath).Where(x => x.name == name).ToArray()[0];
         objDic.Add(WeaponPath + name, obj);
         return obj;
+    }
+
+    public RuntimeAnimatorController GetPlayerSkin(string name)
+    {
+        return Resources.LoadAll<RuntimeAnimatorController>(PlayerSkinPath + name).Where(x => x.name == name).ToArray()[0];
     }
 
 }
