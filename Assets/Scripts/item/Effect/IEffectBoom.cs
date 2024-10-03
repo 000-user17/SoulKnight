@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class IEffectBoom : Item{
+public class IEffectBoom : Item
+{
     public IEffectBoom(GameObject obj) : base(obj)
     {
 

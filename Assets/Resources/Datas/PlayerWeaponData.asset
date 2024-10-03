@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 269e1f277e97b2e4486068b5ee9169a5, type: 3}
+  m_Name: PlayerWeaponData
+  m_EditorClassIdentifier: 
+  textAsset: {fileID: 4900000, guid: 11b9ed77fc60c714084a0ec3c1a4ee5c, type: 3}
+  attrs:
+  - DebuffType: 5
+    FireRate: 4
+    Speed: 30
+    Type: 0
+    Category: 0
+    Quality: 0
+    Damage: 3
+    MagicSpend: 0
+    CriticalRate: 0
+    ScatteringRate: 5
+    BaseAngle: 0
+    SpeedDecrease: 0.1
+  - DebuffType: 5
+    FireRate: 6
+    Speed: 30
+    Type: 1
+    Category: 1
+    Quality: 0
+    Damage: 3
+    MagicSpend: 1
+    CriticalRate: 12
+    ScatteringRate: 10
+    BaseAngle: 0
+    SpeedDecrease: 0.1

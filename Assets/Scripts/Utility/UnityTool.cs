@@ -84,7 +84,11 @@ public class UnityTool
         }
         if (typeof(Enum).IsAssignableFrom(type))
         {
-            return Enum.Parse(type, s);
+            if (Enum.TryParse(type, s, out object result))
+            {
+                return result;
+            }
+            return null;
         }
         return Convert.ChangeType(s, type);
     }
@@ -106,9 +110,9 @@ public class UnityTool
         List<ListInfo> listInfos = new List<ListInfo>();
         foreach (string fieldName in fieldNames)
         {
-            FieldInfo info = t.GetField(fieldName);  // 字段属性，即第一行的那些字段
+            FieldInfo info = t.GetField(fieldName);  // 字段属性，即第一行的那些字段。获取类T的属性
 
-            // 检查 info 是否为 null
+            // 检查 info 是否为 null,即字段名写错了
             if (info == null)
             {
                 Debug.LogError($"Field '{fieldName}' not found in type '{t.Name}'.");
@@ -135,6 +139,8 @@ public class UnityTool
             string[] colums = rows[i].Split(",");
             T obj = (T)Activator.CreateInstance(t);  // 如果是hero，则表示一个hero对象，后面的代码是在这里面设置属性和列表内容
 
+            bool isFailedAdd = false; // 判断添加过程中是否失败
+
             foreach (ListInfo info in listInfos)
             {
                 /*
@@ -152,7 +158,9 @@ public class UnityTool
                 FieldInfo fieldInfo = t.GetField(fieldNames[j]);
                 if (colums[j] == "" || fieldInfo == null)
                 {
-                    continue;
+                    // 类中没有定义的属性会被跳过
+                    isFailedAdd = true;
+                    break;
                 }
                 
                 if (typeof(IList).IsAssignableFrom(fieldInfo.FieldType))
@@ -165,15 +173,31 @@ public class UnityTool
                         如果字段是一个 List<T>，则 GenericTypeArguments[0] 就是 T 的具体类型。例如，对于字段类型 List<int>，GenericTypeArguments[0] 将是 int。
                         如果字段是一个更复杂的泛型类型，如 Dictionary<TKey, TValue>，那么 GenericTypeArguments[0] 将是 TKey 的类型，而 GenericTypeArguments[1] 将是 TValue 的类型。
                         */
-                        listInfo.AddMethod.Invoke(fieldInfo.GetValue(obj), new object[] {ConvertType(colums[j], fieldInfo.FieldType.GenericTypeArguments[0])});
+                        object val = ConvertType(colums[j], fieldInfo.FieldType.GenericTypeArguments[0]);
+                        if (val == null)
+                        {
+                            isFailedAdd = true;
+                            break;
+                        }
+                        listInfo.AddMethod.Invoke(fieldInfo.GetValue(obj), new object[] {val});
                     }
                 }
                 else
                 {
-                    fieldInfo.SetValue(obj, ConvertType(colums[j], fieldInfo.FieldType));
+                    object value = ConvertType(colums[j], fieldInfo.FieldType);
+                    if (value == null)
+                    {
+                        isFailedAdd = true;
+                        break;
+                    }
+                    fieldInfo.SetValue(obj, value);
                 }
             }
-            list.Add(obj);
+            
+            if (!isFailedAdd)
+            {
+                list.Add(obj);
+            }
         }
     }
 }

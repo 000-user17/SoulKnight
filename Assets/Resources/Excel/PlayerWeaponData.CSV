@@ -5,7 +5,7 @@ P250Pistol,Pistol,None,White,3,0,10,5,0,4,30,0.1
 Furnace,Rifle,Burn,Blue,5,2,30,0,0,3,30,0.1
 Icebreaker,Rifle,Freeze,Blue,8,3,40,0,0,1,0,0.1
 PKP,Rifle,None,White,3,1,5,10,0,6,30,0.3
-AK47,Rifle,None,White,3,1,12,10,0,6,30,0.1
+Ak47,Rifle,None,White,3,1,12,10,0,6,30,0.1
 UZI,Rifle,None,White,2,0,5,15,0,6,30,0.1
 SnowFoxL,Rifle,None,White,2,0,5,10,0,6,30,0.1
 AssaultRifle,Rifle,None,White,3,1,10,10,0,6,30,0.1
