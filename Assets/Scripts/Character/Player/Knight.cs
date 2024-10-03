@@ -9,6 +9,6 @@ public class Knight : IPlayer
     protected override void OnInit()
     {
         base.OnInit();
-        m_StateMachine.SetState<KnightIdleState>(); // 初始状态设置为Idle状态
+        m_StateMachine = new KnightStateMachine(this);
     }
 }

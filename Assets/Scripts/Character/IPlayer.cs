@@ -16,7 +16,6 @@ public class IPlayer : ICharacter
     protected override void OnInit()
     {
         base.OnInit();
-        m_StateMachine = new PlayerStateMachine(this);
         weapons = new List<IPlayerWeapon>();
         m_Animator = transform.Find("Sprite").GetComponent<Animator>();
     }

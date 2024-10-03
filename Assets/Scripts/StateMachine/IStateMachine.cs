@@ -18,7 +18,7 @@ public abstract class IStateMachine
             // 如果不存在该类，则用反射创建类对象
             stateDic.Add(typeof(T), (IState) Activator.CreateInstance(typeof(T), this));
         }
-        currentState?.OnExit();
+        stopCurrentState();
         currentState = stateDic[typeof(T)];
         currentState?.OnEnter();
     }
@@ -28,7 +28,7 @@ public abstract class IStateMachine
         currentState?.OnExit();
     }
 
-    public void GameUpdate()
+    public virtual void GameUpdate()
     {
         currentState?.GameUpdate();
     }

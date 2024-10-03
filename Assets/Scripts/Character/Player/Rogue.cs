@@ -8,6 +8,6 @@ public class Rogue : IPlayer
     protected override void OnInit()
     {
         base.OnInit();
-        m_StateMachine.SetState<RogueIdleState>(); // 初始状态设置为Idle状态
+        m_StateMachine = new RogueStateMachine(this);
     }
 }
