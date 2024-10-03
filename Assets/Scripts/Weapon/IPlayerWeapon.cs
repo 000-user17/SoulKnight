@@ -20,11 +20,12 @@ public class IPlayerWeapon : IWeapon
 
     public void ControlWeapon(bool isAttack)
     {
+        /* 必须连续点击才能不停放子弹，不然isAttackKeyDown等于按键，就不会一直放子弹 */
         if (isAttackKeyDown != isAttack && isAttack)
         {
             OnFire();
-            isAttackKeyDown = isAttack;
         }
+        isAttackKeyDown = isAttack;
     }
 
     public void RotateWeapon(Vector2 dir)

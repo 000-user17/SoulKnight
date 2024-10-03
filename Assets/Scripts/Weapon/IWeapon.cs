@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class IWeapon
@@ -7,6 +8,7 @@ public class IWeapon
     public GameObject gameObject { get; protected set;}
     public Transform transform => gameObject.transform;
     protected ICharacter m_Character;
+    protected GameObject FirePoint;
     protected bool isCanRotate; // 武器是否能被旋转
     private bool isInit;
     private bool isEnter;
@@ -21,7 +23,7 @@ public class IWeapon
 
     protected virtual void OnInit()
     {
-
+        FirePoint = UnityTool.Instance.GetTransformFromChildren(gameObject, "FirePoint").gameObject;
     }
     protected virtual void OnEnter() // 切换至此武器时执行一次
     {}

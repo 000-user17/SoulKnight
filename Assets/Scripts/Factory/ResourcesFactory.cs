@@ -22,6 +22,7 @@ public class ResourcesFactory
     private string WeaponPath = "Prefabs/Weapon/";
     private string PlayerSkinPath = "Animation/Characters/Players/";
     private string DataPath = "Datas/";
+    private string BulletPath = "Prefabs/Bullets/";
     private Dictionary<string, GameObject> objDic;
     private ResourcesFactory()
     {
@@ -59,6 +60,11 @@ public class ResourcesFactory
             path += "PlayerSkinData";
         }
         return Resources.Load<T>(path);
+    }
+
+    public GameObject GetBullet(string name)
+    {
+        return Resources.LoadAll<GameObject>(BulletPath).Where(x => x.name == name).ToArray()[0];
     }
 
 }

@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: PlayerSkinData
   m_EditorClassIdentifier: 
   textAsset: {fileID: 4900000, guid: 3b540ccaf2ce0a943bbfd8aa2bbb3b7c, type: 3}
-  datas: []
+  attrs:
+  - PlayerType: 0
+    PlayerSkinTypes: 0100000000000000
+  - PlayerType: 1
+    PlayerSkinTypes: 0200000003000000
