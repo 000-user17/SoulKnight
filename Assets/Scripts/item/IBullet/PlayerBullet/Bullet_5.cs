@@ -7,13 +7,11 @@ public class Bullet_5 : IPlayerBullet
         
     }
 
-    protected override void OnUpdate()
+    protected override void OnHitObstacle()
     {
-        base.OnUpdate();
-        transform.position += rotation * Vector2.right * 30 * Time.deltaTime;
-        if (Physics2D.OverlapCircle(transform.position, 0.1f, LayerMask.GetMask("Obstacle")))
-        {
-            Remove();
-        }
+        base.OnHitObstacle();
+        Item effect = ItemFactory.Instance.GetEffect<EffectBoom>();
+        effect.SetPosition(transform.position);
+        effect.AddToController();
     }
 }

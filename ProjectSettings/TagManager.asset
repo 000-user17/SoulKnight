@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - Obstacle
   - 
   - 
   - 
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Weapon
     uniqueID: 313804567
+    locked: 0
+  - name: Bullet
+    uniqueID: 3535429731
     locked: 0
   - name: UI
     uniqueID: 2361924923
