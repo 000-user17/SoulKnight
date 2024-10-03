@@ -10,16 +10,4 @@ public class PlayerModel : AbstractModel
         base.OnInit();
         data = ResourcesFactory.Instance.GetScripttableObject<PlayerScriptableObject>().attrs;
     }
-
-    public PlayerShareAttr GetPlayersShareAttr(PlayerType type)
-    {
-        foreach (PlayerShareAttr attr in data)
-        {
-            if (attr.PlayerType == type)
-            {
-                return attr;
-            }
-        }
-        return null;
-    }
 }

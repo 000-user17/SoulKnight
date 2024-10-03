@@ -56,7 +56,6 @@ public class KnightWalkState : IPlayerState
     public override void OnExit()
     {
         base.OnExit();
-        m_rb.velocity = Vector2.zero; // 将物体速度设置为0
         m_Animator.SetBool("isIdle", true);
     }
     

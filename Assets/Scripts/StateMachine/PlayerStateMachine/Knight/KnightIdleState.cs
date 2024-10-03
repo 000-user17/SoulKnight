@@ -14,8 +14,10 @@ public class KnightIdleState : IPlayerState
     public override void OnEnter()
     {
         base.OnEnter();
+        if (m_Animator == null) {
+            return;
+        }
         m_Animator.SetBool("isIdle", true); // 之前在unity动画的状态机界面设置的
-        m_rb.velocity = Vector2.zero; // 将物体速度设置为0
     }
 
     protected override void OnUpdate()

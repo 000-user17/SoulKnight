@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ICharacter
 {
+    public CharacterAttribute m_Attr { get; protected set;}
     public GameObject gameObject { get; protected set;}
     // Transform：管理该物体在空间中的位置、旋转、缩放，并且维护该物体与其子物体的层次结构。
     public Transform transform => gameObject.transform;
@@ -58,5 +59,10 @@ public class ICharacter
     protected virtual void Remove() 
     {
         isShouldRemove = true;
+    }
+
+    public void SetAttr(CharacterAttribute attr)
+    {
+        m_Attr = attr;
     }
 }

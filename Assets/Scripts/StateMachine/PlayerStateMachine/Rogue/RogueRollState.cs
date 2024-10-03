@@ -27,7 +27,7 @@ public class RogueRollState : IPlayerState
         base.OnUpdate();
         if (player.recentDir.magnitude > 0)
         {
-            m_rb.transform.position += (Vector3) player.recentDir * 12 * Time.deltaTime;
+            m_rb.transform.position += (Vector3) player.recentDir * 16 * Time.deltaTime;
         }
 
         // 更新时间，检测翻滚是否结束  

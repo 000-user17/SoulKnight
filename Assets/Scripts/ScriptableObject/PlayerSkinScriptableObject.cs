@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerSkinScriptableObject : ScriptableObject
 {
     public TextAsset textAsset;
-    public List<PlayerSkinShareAttr> datas = new List<PlayerSkinShareAttr>();
+    public List<PlayerSkinShareAttr> attrs = new List<PlayerSkinShareAttr>();
     private void OnValidate()
     {
-        UnityTool.Instance.WriteDataToList(datas, textAsset);
+        UnityTool.Instance.WriteDataToList(attrs, textAsset);
     }
 }

@@ -20,7 +20,7 @@ public class ResourcesFactory
         }
     }
     private string WeaponPath = "Prefabs/Weapon/";
-    private string PlayerSkinPath = "Animation/Character/Players/";
+    private string PlayerSkinPath = "Animation/Characters/Players/";
     private string DataPath = "Datas/";
     private Dictionary<string, GameObject> objDic;
     private ResourcesFactory()
@@ -53,6 +53,10 @@ public class ResourcesFactory
         if (type == typeof(PlayerScriptableObject))
         {
             path += "PlayerData";
+        }
+        else if (type == typeof(PlayerSkinScriptableObject))
+        {
+            path += "PlayerSkinData";
         }
         return Resources.Load<T>(path);
     }

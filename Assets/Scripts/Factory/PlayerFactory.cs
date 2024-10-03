@@ -35,9 +35,36 @@ public class PlayerFactory
 
     public IPlayer GetPlayer(PlayerType type)
     {
-        // 查找场景下的名为Knight的物体
+        // 查找场景下的英雄物体
         GameObject obj = GameObject.Find(type.ToString());
+        IPlayer player = GetPlayerObject(type, obj);
 
+        if (!UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox"))
+        {
+            UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox").AddComponent<Symbol>();
+        }
+        UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox").SetCharacter(player);
+
+        return player;
+    }
+
+    public IPlayer GetPlayer(PlayerShareAttr shareAttr)
+    {
+        GameObject obj = GameObject.Find(shareAttr.PlayerType.ToString());
+        IPlayer player = GetPlayerObject(shareAttr.PlayerType, obj);
+        player.SetAttr(AttributeFactor.Instance.GetPlayerAttribute(shareAttr.PlayerType));
+
+        if (!UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox"))
+        {
+            UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox").AddComponent<Symbol>();
+        }
+        UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox").SetCharacter(player);
+
+        return player;
+    }
+
+    private IPlayer GetPlayerObject(PlayerType type, GameObject obj)
+    {
         IPlayer player = null;
         switch (type)
         {
@@ -48,13 +75,6 @@ public class PlayerFactory
                 player = new Rogue(obj);
                 break;
         }
-
-        if (!UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox"))
-        {
-            UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox").AddComponent<Symbol>();
-        }
-        UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox").SetCharacter(player);
-
         return player;
     }
 }

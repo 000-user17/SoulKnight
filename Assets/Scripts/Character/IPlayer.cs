@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class IPlayer : ICharacter
 {
+    public new PlayerAttribute m_Attr { get => base.m_Attr as PlayerAttribute; set => base.m_Attr = value;}
     protected Animator m_Animator;
     protected PlayerStateMachine m_StateMachine;
     protected List<IPlayerWeapon> weapons;

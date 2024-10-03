@@ -55,6 +55,7 @@ public class PanelSelectPlayer : IPanel
     protected override void OnEnter()
     {
         base.OnEnter();
+        SkinInterface.OnEnter();
     }
 
     public void SetCollider(GameObject collider)
