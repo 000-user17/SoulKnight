@@ -5,7 +5,8 @@ using System.Collections.Generic;
 // 这里更改了要重启unity项目才能正常
 public class PlayerShareAttr : CharacterShareAttr
 {
-    public PlayerType playerType;
+    // 注意，这里的变量名一定要和csv文件的第一行的名称匹配
+    public PlayerType PlayerType;
     public PlayerWeaponType IdleWeapon;  // 默认武器
     public int Armor;  // 护甲
     public int Magic;  // 法力值

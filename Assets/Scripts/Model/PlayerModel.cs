@@ -15,7 +15,7 @@ public class PlayerModel : AbstractModel
     {
         foreach (PlayerShareAttr attr in data)
         {
-            if (attr.playerType == type)
+            if (attr.PlayerType == type)
             {
                 return attr;
             }

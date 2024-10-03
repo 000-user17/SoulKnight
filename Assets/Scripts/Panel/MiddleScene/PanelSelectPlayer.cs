@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using MiddleScene;
 using UnityEngine;
 using UnityEngine.UI;
-using MiddleScene;
 using System;
 public class PanelSelectPlayer : IPanel
 {
