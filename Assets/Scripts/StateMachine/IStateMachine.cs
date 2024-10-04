@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class IStateMachine
 {
     private Dictionary<Type, IState> stateDic;
-    private IState currentState;
+    protected IState currentState;
     public IStateMachine()
     {
         stateDic = new Dictionary<Type, IState>(); // Type是类，IState是对象
@@ -31,5 +31,10 @@ public abstract class IStateMachine
     public virtual void GameUpdate()
     {
         currentState?.GameUpdate();
+    }
+
+    protected virtual void OnUpdate()
+    {
+        
     }
 }

@@ -18,6 +18,7 @@ public class IPlayer : ICharacter
         base.OnInit();
         weapons = new List<IPlayerWeapon>();
         m_Animator = transform.Find("Sprite").GetComponent<Animator>();
+        GameMediator.Instance.GetController<PlayerController>().AddPlayerPet(PetType.LittleCool, this);
     }
 
     protected override void OnCharacterUpdate()

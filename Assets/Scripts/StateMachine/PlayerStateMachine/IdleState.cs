@@ -20,7 +20,7 @@ public class IdleState : IPlayerState
 
     protected override void OnUpdate()
     {
-        base.OnInit();
+        base.OnUpdate();
     }
 
     public override void OnExit()

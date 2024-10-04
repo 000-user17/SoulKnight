@@ -77,4 +77,23 @@ public class PlayerFactory
         }
         return player;
     }
+
+    public IPet GetPlayerPet(PetType type, IPlayer player)
+    {
+        GameObject obj = GameObject.Find(type.ToString());
+        IPet pet = GetPlayerPetObject(type, obj, player);
+        return pet;
+    }
+
+    private IPet GetPlayerPetObject(PetType type, GameObject obj, IPlayer player)
+    {
+        IPet pet = null;
+        switch  (type)
+        {
+            case PetType.LittleCool:
+                pet = new LittleCool(obj, player);
+                break;
+        }
+        return pet;
+    }
 }

@@ -29,6 +29,7 @@ public class PlayerCommand : Singleton<PlayerCommand>
         {
             if (attr.PlayerType == type)
             {
+                attr.PlayerSkinTypes.Remove(PlayerSkinType.None);
                 return attr.PlayerSkinTypes;
             }
         }
