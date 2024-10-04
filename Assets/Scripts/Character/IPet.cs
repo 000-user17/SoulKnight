@@ -6,7 +6,7 @@ public class IPet : ICharacter
     public IPlayer Player { get; protected set;}
     public IPet(GameObject obj, IPlayer player) : base(obj)
     {
-        m_Attr = AttributeFactor.Instance.GetPlayerAttribute(PlayerType.Knight);
+        m_Attr = AttributeFactory.Instance.GetPlayerAttribute(PlayerType.Knight);
         Player = player;
     }
 

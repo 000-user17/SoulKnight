@@ -7,14 +7,14 @@ public class RogueStateMachine : PlayerStateMachine
     private bool isRoll;
     public RogueStateMachine(IPlayer player) : base(player)
     {
-        SetState<IdleState>();
+        SetState<PlayerIdleState>();
     }
 
     public override void GameUpdate()
     {
         base.GameUpdate();
 
-        if (moveDir.magnitude > 0)
+        if (isRoll || moveDir.magnitude > 0)
         {
             // 检测按下空格键或当前是否正在翻滚
             if (isRoll || Input.GetKeyDown(KeyCode.Space))
@@ -35,16 +35,16 @@ public class RogueStateMachine : PlayerStateMachine
                 }
                 else
                 {
-                    SetState<RollState>();  // 在翻滚期间设置状态为RollState
+                    SetState<PlayerRollState>();  // 在翻滚期间设置状态为RollState
                     return;  // 跳过后续逻辑，继续翻滚
                 }
             }
 
-            SetState<WalkState>();  // 当不翻滚时，进入行走状态
+            SetState<PlayerWalkState>();  // 当不翻滚时，进入行走状态
         }
         else
         {
-            SetState<IdleState>();  // 当没有移动时，进入Idle状态
+            SetState<PlayerIdleState>();  // 当没有移动时，进入Idle状态
         }
     }
 }

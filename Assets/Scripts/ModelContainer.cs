@@ -26,6 +26,7 @@ public class ModelContainer
         AddModel(new SceneModel());
         AddModel(new PlayerModel());
         AddModel(new PlayerSkinModel());
+        AddModel(new WeaponModel());
     }
     public T GetModel<T>() where T : AbstractModel
     {

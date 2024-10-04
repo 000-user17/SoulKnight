@@ -21,6 +21,7 @@ public class PetFollowPlayerState : IPetState
     public override void OnEnter()
     {
         base.OnEnter();
+        if (m_Animator == null) return;
         m_Animator.SetBool("isWalk", true);
         CoroutinePool.Instance.StartCoroutine(this, SeekerLoop());
     }

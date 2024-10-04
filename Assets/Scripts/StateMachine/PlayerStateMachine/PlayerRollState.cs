@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RollState : IPlayerState
+public class PlayerRollState : IPlayerState
 {
     private float rollDuration = 0.25f; // 假设翻滚时间为0.25秒  
     private float rollTime = 0f; // 记录翻滚时间  
-    public RollState(PlayerStateMachine machine) : base(machine)
+    public PlayerRollState(PlayerStateMachine machine) : base(machine)
     {
 
     }
@@ -24,7 +24,7 @@ public class RollState : IPlayerState
     {
         base.OnUpdate();
 
-        m_rb.transform.position += (Vector3) player.recentDir * 16 * Time.deltaTime;
+        m_rb.transform.position += (Vector3) player.recentDir * player.m_Attr.m_ShareAttr.Speed * 1.5f * Time.deltaTime;
 
         // 更新时间，检测翻滚是否结束  
         rollTime += Time.deltaTime;  

@@ -38,6 +38,7 @@ public class PlayerFactory
         // 查找场景下的英雄物体
         GameObject obj = GameObject.Find(type.ToString());
         IPlayer player = GetPlayerObject(type, obj);
+        player.SetAttr(AttributeFactory.Instance.GetPlayerAttribute(type));
 
         if (!UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox"))
         {
@@ -52,7 +53,7 @@ public class PlayerFactory
     {
         GameObject obj = GameObject.Find(shareAttr.PlayerType.ToString());
         IPlayer player = GetPlayerObject(shareAttr.PlayerType, obj);
-        player.SetAttr(AttributeFactor.Instance.GetPlayerAttribute(shareAttr.PlayerType));
+        player.SetAttr(AttributeFactory.Instance.GetPlayerAttribute(shareAttr.PlayerType));
 
         if (!UnityTool.Instance.GetComponentFromChildren<Symbol>(obj, "BulletCheckBox"))
         {

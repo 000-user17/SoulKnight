@@ -14,4 +14,10 @@ public class Bullet_5 : IPlayerBullet
         effect.SetPosition(transform.position);
         effect.AddToController();
     }
+
+    protected override void OnHitEnemy(IEnemy enemy)
+    {
+        base.OnHitEnemy(enemy);
+        enemy.UnderAttack(5);
+    }
 }

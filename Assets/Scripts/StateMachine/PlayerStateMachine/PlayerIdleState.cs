@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : IPlayerState
+public class PlayerIdleState : IPlayerState
 {
-    public IdleState(PlayerStateMachine machine) : base(machine)
+    public PlayerIdleState(PlayerStateMachine machine) : base(machine)
     {
 
     }

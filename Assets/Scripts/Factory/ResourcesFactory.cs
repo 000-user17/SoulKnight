@@ -5,25 +5,14 @@ using System.Linq;
 using Unity.Collections;
 using UnityEngine;
 
-public class ResourcesFactory
+public class ResourcesFactory : Singleton<ResourcesFactory>
 {
-    private static ResourcesFactory instance;
-    public static ResourcesFactory Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new ResourcesFactory();
-            }
-            return instance;
-        }
-    }
     private string WeaponPath = "Prefabs/Weapon/";
     private string PlayerSkinPath = "Animation/Characters/Players/";
     private string DataPath = "Datas/";
     private string BulletPath = "Prefabs/Bullets/";
     private string EffectPath = "Prefabs/Effects/";
+    private string EnemyPath = "Prefabs/Enemy/";
     private Dictionary<string, GameObject> objDic;
     private ResourcesFactory()
     {
@@ -60,6 +49,14 @@ public class ResourcesFactory
         {
             path += "PlayerSkinData";
         }
+        else if (type == typeof(PlayerWeaponScriptableObject))
+        {
+            path += "PlayerWeaponData";
+        }
+        else if (type == typeof(EnemyScriptableObject))
+        {
+            path += "EnemyData";
+        }
         return Resources.Load<T>(path);
     }
 
@@ -71,6 +68,11 @@ public class ResourcesFactory
     public GameObject GetEffect(string name)
     {
         return Resources.Load<GameObject>(EffectPath + name);
+    }
+
+    public GameObject GetEnemy(string name)
+    {
+        return Resources.Load<GameObject>(EnemyPath + name);
     }
 
 }

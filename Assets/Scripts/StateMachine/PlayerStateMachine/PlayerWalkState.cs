@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkState : IPlayerState
+public class PlayerWalkState : IPlayerState
 {
-    public WalkState(PlayerStateMachine machine) : base(machine)
+    public PlayerWalkState(PlayerStateMachine machine) : base(machine)
     {
 
     }
@@ -33,7 +33,7 @@ public class WalkState : IPlayerState
         {
             player.isLeft = true;
         }
-        m_rb.transform.position += (Vector3) moveDir * 8 * Time.deltaTime;
+        m_rb.transform.position += (Vector3) moveDir * player.m_Attr.m_ShareAttr.Speed * Time.deltaTime;
     }
 
     public override void OnExit()

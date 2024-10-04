@@ -8,6 +8,7 @@ public class ICharacter
     public GameObject gameObject { get; protected set;}
     // Transform：管理该物体在空间中的位置、旋转、缩放，并且维护该物体与其子物体的层次结构。
     public Transform transform => gameObject.transform;
+    public GameObject TriggerBox { get; protected set;}
 
     private bool m_isLeft;
     private bool isInit;
@@ -32,6 +33,7 @@ public class ICharacter
     public ICharacter(GameObject obj)
     {
         gameObject = obj;
+        TriggerBox = UnityTool.Instance.GetTransformFromChildren(gameObject, "BulletCheckBox").gameObject;
     }
 
     public void GameUpdate()
@@ -54,7 +56,21 @@ public class ICharacter
             OnCharacterStart();
         }
     }
-    protected virtual void OnCharacterDieStart() {}
+    protected virtual void OnCharacterDieStart()
+    {
+
+    }
+
+    protected virtual void OnCharacterDieUpdate()
+    {
+
+    }
+
+    public virtual void UnderAttack(int damage)
+    {
+        m_Attr.currentHp -= damage;
+        Debug.Log(m_Attr.currentHp);
+    }
 
     protected virtual void Remove() 
     {

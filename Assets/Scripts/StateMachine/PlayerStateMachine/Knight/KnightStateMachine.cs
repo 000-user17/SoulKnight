@@ -4,7 +4,7 @@ public class KnightStateMachine : PlayerStateMachine
 {
     public KnightStateMachine(IPlayer player) : base(player)
     {
-        SetState<IdleState>();
+        SetState<PlayerIdleState>();
     }
 
     public override void GameUpdate()
@@ -13,10 +13,10 @@ public class KnightStateMachine : PlayerStateMachine
 
         if (moveDir.magnitude > 0)
         {
-            SetState<WalkState>();
+            SetState<PlayerWalkState>();
         }
         else{
-            SetState<IdleState>();
+            SetState<PlayerIdleState>();
         }
 
     }

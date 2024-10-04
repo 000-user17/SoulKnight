@@ -6,7 +6,7 @@ public class BadPistol : IPlayerWeapon
 {
     public BadPistol(GameObject obj, ICharacter character) : base(obj, character)
     {
-
+        m_Attr = WeaponCommand.Instance.GetPlayerWeaponShareAttr(PlayerWeaponType.BadPistol);
     }
 
     protected override void OnFire()
