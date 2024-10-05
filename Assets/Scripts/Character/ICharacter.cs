@@ -46,7 +46,10 @@ public class ICharacter
         OnCharacterUpdate();
     }
 
-    protected virtual void OnInit() {}
+    protected virtual void OnInit()
+    {
+        m_Attr.currentHp = m_Attr.m_ShareAttr.MaxHp;
+    }
     protected virtual void OnCharacterStart() {}
     protected virtual void OnCharacterUpdate()
     {

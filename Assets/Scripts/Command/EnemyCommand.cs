@@ -3,7 +3,7 @@ public class EnemyCommand : Singleton<EnemyCommand>
     private EnemyModel model;
     private EnemyCommand()
     {
-
+        model = ModelContainer.Instance.GetModel<EnemyModel>();
     }
 
     public EnemyShareAttr GetShareAttr(EnemyType type)

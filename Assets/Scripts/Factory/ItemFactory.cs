@@ -1,9 +1,11 @@
 using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public enum PlayerBulletType
 {
     Bullet_5,
+    Bullet_35,
 }
 
 public class ItemFactory : Singleton<ItemFactory>
@@ -13,7 +15,7 @@ public class ItemFactory : Singleton<ItemFactory>
 
     }
 
-    public IPlayerBullet GetPlayerBullet(PlayerBulletType type)
+    public T GetPlayerBullet<T>(PlayerBulletType type) where T : IPlayerBullet
     {
         GameObject obj = UnityEngine.Object.Instantiate(ResourcesFactory.Instance.GetBullet(type.ToString()));
         IPlayerBullet bullet = null;
@@ -22,11 +24,14 @@ public class ItemFactory : Singleton<ItemFactory>
             case PlayerBulletType.Bullet_5:
                 bullet = new Bullet_5(obj);
                 break;
+            case PlayerBulletType.Bullet_35:
+                bullet = new Bullet_35(obj);
+                break;
         }
-        return bullet;
+        return bullet as T;
     }
 
-    public Item GetEffect<T>() where T : Item
+    public T GetEffect<T>() where T : Item
     {
         /*Activator.CreateInstance(typeof(T), new object[] { obj })：
 
@@ -42,7 +47,7 @@ public class ItemFactory : Singleton<ItemFactory>
 
         最终创建的对象 effect 是一个 Item 类型（T 类型）的实例，它是通过调用 T 的构造函数并传入 obj 参数生成的。*/
         GameObject obj = UnityEngine.Object.Instantiate(ResourcesFactory.Instance.GetEffect(typeof(T).Name));
-        Item effect = (T)Activator.CreateInstance(typeof(T), new object[] {obj});
+        T effect = (T)Activator.CreateInstance(typeof(T), new object[] {obj});
         
         return effect;
     } 

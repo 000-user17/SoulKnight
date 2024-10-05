@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
-public class Bullet_5 : IPlayerBullet
+public class Bullet_35 : IPlayerBullet
 {
-    public Bullet_5(GameObject obj) : base(obj)
+    public Bullet_35(GameObject obj) : base(obj)
     {
         
     }
@@ -19,14 +18,9 @@ public class Bullet_5 : IPlayerBullet
     protected override void OnHitEnemy(IEnemy enemy)
     {
         base.OnHitEnemy(enemy);
-        enemy.UnderAttack(5);
+        enemy.UnderAttack(10);
         Item effect = ItemFactory.Instance.GetEffect<EffectBoom>();
         effect.SetPosition(transform.position);
         effect.AddToController();
-    }
-
-    public static implicit operator Bullet_5(Bullet_35 v)
-    {
-        throw new NotImplementedException();
     }
 }

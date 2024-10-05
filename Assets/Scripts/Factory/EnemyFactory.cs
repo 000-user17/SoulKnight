@@ -12,6 +12,7 @@ public class EnemyFactory : Singleton<EnemyFactory>
         GameObject obj = ResourcesFactory.Instance.GetEnemy(type.ToString());
         IEnemy enemy = CreateEnemy(type, obj);
         enemy.SetAttr(AttributeFactory.Instance.GetEnemyAttribute(type));
+        UnityTool.Instance.GetComponentFromChildren<Symbol>(enemy.gameObject, "BulletCheckBox").SetCharacter(enemy);
         return enemy;
     }
 
@@ -29,6 +30,10 @@ public class EnemyFactory : Singleton<EnemyFactory>
 
     public IEnemy GetEnemy(EnemyType type, GameObject obj)
     {
-        return CreateEnemy(type, obj);
+        // 测试时，场景中 已经有敌人prefab存在，直接放obj
+        IEnemy enemy = CreateEnemy(type, obj);
+        enemy.SetAttr(AttributeFactory.Instance.GetEnemyAttribute(type));
+        UnityTool.Instance.GetComponentFromChildren<Symbol>(enemy.gameObject, "BulletCheckBox").SetCharacter(enemy);
+        return enemy;
     }
 }

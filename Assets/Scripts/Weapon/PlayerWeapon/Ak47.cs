@@ -12,7 +12,7 @@ public class Ak47 : IPlayerWeapon
     protected override void OnFire()
     {
         base.OnFire();
-        Bullet_5 bullet = ItemFactory.Instance.GetPlayerBullet(PlayerBulletType.Bullet_5) as Bullet_5;
+        Bullet_35 bullet = ItemFactory.Instance.GetPlayerBullet<Bullet_35>(PlayerBulletType.Bullet_35);
         bullet.SetPosition(FirePoint.transform.position);
         bullet.SetRotation(RotOrigin.transform.rotation); // 与武器朝向一致
         bullet.AddToController();
